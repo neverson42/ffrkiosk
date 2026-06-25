@@ -8,21 +8,21 @@
 </head>
 
 <script>
-axios.post(
-  "https://adopt.animalsfirst.com/get-animals/672d68c821fd26b8a1017fa3?page=1&species=dog",
-  {
+fetch("https://adopt.animalsfirst.com/get-animals/672d68c821fd26b8a1017fa3?page=1&species=dog", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
     filters: {},
     search: "",
     display: "grid",
     status: ""
-  }
-)
-.then(res => {
-  console.log(res.data);
+  })
 })
-.catch(err => {
-  console.log(err.response?.data || err);
-});
+.then(r => r.text())
+.then(console.log)
+.catch(console.error);
   
 </script>
 <body>
