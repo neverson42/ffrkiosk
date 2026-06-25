@@ -1,30 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <Title>Fishy's Friends Rescue Adoption Board</Title>
-<style>
+<title>Fishy's Friends Rescue Adoption Board</title>
+<meta charset="UTF-8">
 
-  
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+.animal {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+}
+img {
+    max-width: 200px;
+}
 </style>
 
 </head>
 
-<script>
-fetch("https://adopt.animalsfirst.com/get-animals/672d68c821fd26b8a1017fa3?page=1&species=dog", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    filters: {},
-    search: "",
-    display: "grid",
-    status: ""
-  })
-})
-.then(r => r.text())
-.then(console.log)
-.catch(console.error);
-  
-</script>
 <body>
-  
+
+<h1>Fishy's Friends Rescue</h1>
+<div id="status">Loading...</div>
+<div id="animals"></div>
+
+
+<script>
+
+console.log("axios loaded:", typeof axios);
+
+
+// mimic AnimalsFirst setup
+axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = "ADOPT-XSRF-TOKEN";
+axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+
+
+const shelterId = "672d68c821fd26b8a1017fa3";
+
+axios.post(
+    `https://adopt.animalsfirst.com/get-animals/${shelterId}?page=1&species=dog`,
+    {
+        filters: {},
+        search: "",
+        display: "grid",
+        status: ""
+    }
+)
+.then(response => {
+
+    console.log("RAW RESPONSE", response.data);
+
+    document.getElementById("status").innerHTML =
+        `Found ${response.data.total} animals`;
+
+    let animals = response.data.data;
+
+    let html = "";
+
+    animals.forEach(animal => {
+
+        console.log(animal);
+
+        html += `
+        <div class="animal">
+            <h2>${animal.name || "No name"}</h2>
+            <p>
+                ${animal.breed || ""}
+            </p>
+            <p>
+                ${animal.status || ""}
+            </p>
+        </div>
+        `;
+    });
+
+    document.getElementById("animals").innerHTML = html;
+
+})
+.catch(error => {
+
+    console.error("FAILED", error);
+
+    document.getElementById("status").innerHTML =
+        "Error loading animals. Check console.";
+
+});
+
+</script>
+
 </body>
+</html>
