@@ -1,98 +1,438 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>Fishy's Friends Rescue Adoption Board</title>
 <meta charset="UTF-8">
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
-body {
-    font-family: Arial, sans-serif;
-}
-.animal {
-    border: 1px solid #ccc;
-    margin: 10px;
-    padding: 10px;
-}
-img {
-    max-width: 200px;
-}
-</style>
+*{box-sizing:border-box;}
 
+html,body{
+margin:0;
+height:100%;
+overflow:hidden;
+background:#111;
+color:white;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+.page{
+height:100vh;
+display:flex;
+flex-direction:column;
+padding:25px 35px;
+}
+
+.header{
+height:140px;
+display:grid;
+grid-template-columns:220px 1fr 160px;
+align-items:center;
+gap:20px;
+flex-shrink:0;
+}
+
+.logo{
+height:150px;
+object-fit:contain;
+margin-left:100px;
+}
+
+.title{
+text-align:center;
+font-size:72px;
+font-weight:bold;
+}
+
+.qr{
+background:white;
+border:10px;
+padding:10px;
+justify-self:end;
+margin-right:100px;
+
+}
+
+.carousel{
+flex:1;
+position:relative;
+overflow:hidden;
+display:flex;
+align-items:center;
+padding:0 90px;
+touch-action:none;
+}
+
+.track{
+display:flex;
+gap:25px;
+transition:transform .45s ease;
+}
+
+.card{
+width:calc((100vw - 220px - 90px) / 5);
+max-width:360px;
+min-width:260px;
+height:70vh;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+flex-shrink:0;
+display:flex;
+flex-direction:column;
+text-align:center;
+opacity:.45;
+transition:transform .35s ease,opacity .35s ease;
+}
+
+.card.active{
+opacity:1;
+transform:scale(1.08);
+}
+
+.card img{
+width:100%;
+height:calc(70vh - 90px);
+object-fit:cover;
+pointer-events:none;
+}
+
+.name{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
+font-weight:bold;
+padding:10px;
+}
+
+a,
+a:visited,
+a:hover,
+a:active{
+color:white;
+text-decoration:none;
+}
+
+.nav{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:100px;
+height:100px;
+border-radius:50%;
+background:#222;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:65px;
+z-index:20;
+cursor:pointer;
+}
+
+.left{left:20px;}
+.right{right:20px;}
+
+</style>
 </head>
+
 
 <body>
 
-<h1>Fishy's Friends Rescue</h1>
-<div id="status">Loading...</div>
-<div id="animals"></div>
+<div class="page">
+
+<div class="header">
+
+<img class="logo" src="logo.png">
+
+<div class="title">
+ADOPTABLE DOGS
+</div>
+
+<div id="homeqr" class="qr"></div>
+
+</div>
+
+
+<div class="carousel">
+
+<div class="nav left" onclick="move(-1)">❮</div>
+
+<div id="track" class="track">
+	
+
+<a href="dogs/67c8e7b559ef0d82460a31bb/index.html">
+
+<div class="card">
+
+<img src="dogs/67c8e7b559ef0d82460a31bb/images/1.jpg">
+<div class="name">
+LAYLA DAKOTA
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/69822b63d409df190b0eb8aa/index.html">
+
+<div class="card">
+
+<img src="dogs/69822b63d409df190b0eb8aa/images/1.jpg">
+<div class="name">
+FRANKIE  FROST
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/6a2ebf97b5bc9718e0008aaf/index.html">
+
+<div class="card">
+
+<img src="dogs/6a2ebf97b5bc9718e0008aaf/images/1.jpg">
+<div class="name">
+MEREDITH (HUNNIE) GREY
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/6a2eb6c76ef241c31707266b/index.html">
+
+<div class="card">
+
+<img src="dogs/6a2eb6c76ef241c31707266b/images/1.jpg">
+<div class="name">
+CHRISTINA (MAPLE) GREY
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/693b26003bc69e29f9002558/index.html">
+
+<div class="card">
+
+<img src="dogs/693b26003bc69e29f9002558/images/1.jpg">
+<div class="name">
+ALADDIN (LIGHT BLUE) DISNEY
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/69936bc7d833368c330cb863/index.html">
+
+<div class="card">
+
+<img src="dogs/69936bc7d833368c330cb863/images/1.jpg">
+<div class="name">
+ARCHIBALD BRIDGERTON
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/699367bc56db3458030f1475/index.html">
+
+<div class="card">
+
+<img src="dogs/699367bc56db3458030f1475/images/1.jpg">
+<div class="name">
+LADY VIOLET (BLUEBERRY)
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/6916183cd54ed4d31f00ab47/index.html">
+
+<div class="card">
+
+<img src="dogs/6916183cd54ed4d31f00ab47/images/1.jpg">
+<div class="name">
+HANK THE HANDSOME
+</div>
+</div>
+
+</a>
+
+
+
+
+<a href="dogs/686fc4d22211fb86a00b3bda/index.html">
+
+<div class="card">
+
+<img src="dogs/686fc4d22211fb86a00b3bda/images/1.jpg">
+<div class="name">
+TILLY GRACE
+</div>
+</div>
+
+</a>
+
+
+</div>
+
+<div class="nav right" onclick="move(1)">❯</div>
+
+
+</div>
+
+</div>
 
 
 <script>
 
-console.log("axios loaded:", typeof axios);
+new QRCode(
+document.getElementById("homeqr"),
+{
+text:"http://www.fishysfriendsrescue.com",
+width:120,
+height:120
+}
+);
 
 
-// mimic AnimalsFirst setup
-axios.defaults.headers.common["X-Requested-With"] = "XMLHttpRequest";
-axios.defaults.withCredentials = true;
-axios.defaults.xsrfCookieName = "ADOPT-XSRF-TOKEN";
-axios.defaults.xsrfHeaderName = "X-XSRF-TOKEN";
+const track=document.getElementById("track");
+function updateActive(){
+document.querySelectorAll(".card")
+.forEach(c=>c.classList.remove("active"));
+let cards=document.querySelectorAll(".card");
+cards[2].classList.add("active");
+cards[0].style.visibility="visible";
+cards[1].style.visibility="visible";
+cards[2].style.visibility="visible";
+cards[3].style.visibility="visible";
+cards[4].style.visibility="visible";
+cards[5].style.visibility="hidden";
+cards[6].style.visibility="hidden";
+
+}
+
+function move(dir){
+let card=document.querySelector(".card");
+let step=card.offsetWidth+25;
+track.style.transition="transform .45s ease";
+track.style.transform=
+"translateX("+(-step*dir)+"px)";
+setTimeout(()=>{
+if(dir>0){
+track.appendChild(
+track.firstElementChild
+);
+
+}else{
+
+track.insertBefore(
+track.lastElementChild,
+track.firstElementChild
+);
+
+}
+
+track.style.transition="none";
+track.style.transform="translateX(0)";
+
+updateActive();
+
+},450);
+
+}
 
 
-const shelterId = "672d68c821fd26b8a1017fa3";
+updateActive();
 
-axios.post(
-    `https://adopt.animalsfirst.com/get-animals/${shelterId}?page=1&species=dog`,
-    {
-        filters: {},
-        search: "",
-        display: "grid",
-        status: ""
-    }
-)
-.then(response => {
 
-    console.log("RAW RESPONSE", response.data);
+let startX=0;
+let startY=0;
 
-    document.getElementById("status").innerHTML =
-        `Found ${response.data.total} animals`;
+const carousel=document.querySelector(".carousel");
 
-    let animals = response.data.data;
+carousel.addEventListener(
+"pointerdown",
+e=>{
 
-    let html = "";
-
-    animals.forEach(animal => {
-
-        console.log(animal);
-
-        html += `
-        <div class="animal">
-            <h2>${animal.name || "No name"}</h2>
-            <p>
-                ${animal.breed || ""}
-            </p>
-            <p>
-                ${animal.status || ""}
-            </p>
-        </div>
-        `;
-    });
-
-    document.getElementById("animals").innerHTML = html;
-
-})
-.catch(error => {
-
-    console.error("FAILED", error);
-
-    document.getElementById("status").innerHTML =
-        "Error loading animals. Check console.";
+startX=e.clientX;
+startY=e.clientY;
 
 });
+
+
+carousel.addEventListener(
+"pointerup",
+e=>{
+
+let dx=e.clientX-startX;
+let dy=e.clientY-startY;
+
+
+if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){
+
+e.preventDefault();
+
+if(dx<0){
+move(1);
+}else{
+move(-1);
+}
+
+}
+
+});
+
+			function fitText(el,max,min){
+			
+			let size=max;
+			
+			el.style.fontSize=size+"px";
+			
+			
+			while(
+			el.scrollHeight > el.clientHeight
+			&&
+			size > min
+			){
+			
+			size--;
+			
+			el.style.fontSize=size+"px";
+			
+			}
+			
+			}
+			
+			
+			fitText(document.querySelector(".name"),72,20);
 
 </script>
 
 </body>
 </html>
+

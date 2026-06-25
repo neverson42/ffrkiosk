@@ -1,0 +1,269 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>LAYLA DAKOTA</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+		<style>
+			*{
+			box-sizing:border-box;
+			user-select:none;
+			-webkit-user-select:none;
+			}
+			html,body{
+			margin:0;
+			height:100%;
+			width:100%;
+			overflow:hidden;
+			background:#111;
+			color:white;
+			font-family:Arial,Helvetica,sans-serif;
+			}
+			.page{
+			height:100vh;
+			width:100vw;
+			display:flex;
+			flex-direction:column;
+			padding:25px;
+			}
+			.header{
+			height:130px;
+			display:grid;
+			grid-template-columns:220px 1fr 170px 80px;
+			align-items:center;
+			gap:20px;
+			flex-shrink:0;
+			}
+			.logo{
+			height:150px;
+			max-width:210px;
+			object-fit:contain;
+			padding-left:100px;
+			}
+			.title{
+			text-align:center;
+			font-weight:bold;
+			white-space:nowrap;
+			overflow:hidden;
+			font-size:72px;
+			}
+			.qr{
+			background:white;
+			padding:8px;
+			width:max-content;
+			justify-self:center;
+			}
+			.close{
+			width:70px;
+			height:70px;
+			border-radius:50%;
+			background:#222;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			font-size:50px;
+			cursor:pointer;
+			z-index:999;
+			}
+			.content{
+			flex:1;
+			display:grid;
+			grid-template-columns:50% 50%;
+			min-height:0;
+			gap:20px;
+			}
+			.photoArea{
+			position:relative;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			}
+			.photo{
+			max-width:90%;
+			max-height:75vh;
+			object-fit:contain;
+			}
+			.arrow{
+			position:absolute;
+			top:50%;
+			transform:translateY(-50%);
+			font-size:90px;
+			cursor:pointer;
+			user-select:none;
+			z-index:10;
+			}
+			.left{
+			left:0;
+			}
+			.right{
+			right:0;
+			}
+			.info{
+			padding:20px;
+			overflow:hidden;
+			display:flex;
+			flex-direction:column;
+			}
+			.meta{
+			font-size:28px;
+			}
+			.bio{
+			flex:1;
+			overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<div class="header">
+				<img class="logo" src="../../logo.png">
+				<div class="title">
+					LAYLA DAKOTA
+				</div>
+				<div id="qr" class="qr"></div>
+				<div class="close" onclick="goHome()">
+					✕
+				</div>
+			</div>
+			<div class="content">
+				<div class="photoArea">
+					<div class="arrow left" onclick="prev()">
+						❮
+					</div>
+					<img id="photo" class="photo">
+					<div class="arrow right" onclick="next()">
+						❯
+					</div>
+				</div>
+				<div class="info">
+					<div class="meta">
+						<h2>American Pit Bull Terrier</h2>
+						<p>Female 2 - 2.5 YEARS</p>
+					</div>
+					<div id="bio" class="bio">
+						Meet Layla Dakota – A Survivor Ready for Love
+Layla Dakota may have had a rough start, but she’s not letting her past define her future. Around 2 years old, this resilient girl has already endured abuse, neglect, and being heartlessly dumped. She’s never truly known the love of a family, and it shows in her social skills—she’s still learning what it means to trust, to feel safe, and to simply be a dog. She LOVES kids more than anything else on the planet.
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			const photos =
+			["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg","images/5.jpg","images/6.jpg","images/7.jpg","images/8.jpg","images/9.jpg","images/10.jpg","images/11.jpg","images/12.jpg","images/13.jpg","images/14.jpg"];
+			
+			
+			let index=0;
+			
+			
+			
+			function show(){
+			
+			document.getElementById("photo").src =
+			photos[index];
+			
+			}
+			
+			
+			
+			function next(){
+			
+			index++;
+			
+			if(index>=photos.length)
+			index=0;
+			
+			show();
+			
+			}
+			
+			
+			
+			function prev(){
+			
+			index--;
+			
+			if(index<0)
+			index=photos.length-1;
+			
+			show();
+			
+			}
+			
+			
+			
+			function goHome(){
+			
+			location.href="../../index.html";
+			
+			}
+			
+			new QRCode(
+			document.getElementById("qr"),
+			{
+			
+			text:"https://adopt.animalsfirst.com/animal/672d68c821fd26b8a1017fa3/67c8e7b559ef0d82460a31bb",
+			width:130,
+			height:130
+			}
+			);
+						
+			function fitText(el,max,min){
+			
+			let size=max;
+			
+			el.style.fontSize=size+"px";
+			
+			
+			while(
+			el.scrollHeight > el.clientHeight
+			&&
+			size > min
+			){
+			
+			size--;
+			
+			el.style.fontSize=size+"px";
+			
+			}
+			
+			}
+			
+			
+			fitText(document.querySelector(".title"),72,20);
+			fitText(document.querySelector(".bio"),34,12);
+			
+			let timer;
+			
+			function resetTimer(){
+			
+			clearTimeout(timer);
+			
+			timer=setTimeout(
+			goHome,
+			60000
+			);
+			
+			}
+						
+			[
+			"click",
+			"mousemove",
+			"touchstart",
+			"keydown"
+			
+			].forEach(e=>{
+			
+			document.addEventListener(
+			e,
+			resetTimer
+			);
+			
+			});
+			
+			resetTimer();
+			show();		
+		</script>
+	</body>
+</html>

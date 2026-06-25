@@ -1,0 +1,280 @@
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>MEREDITH (HUNNIE) GREY</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+		<style>
+			*{
+			box-sizing:border-box;
+			user-select:none;
+			-webkit-user-select:none;
+			}
+			html,body{
+			margin:0;
+			height:100%;
+			width:100%;
+			overflow:hidden;
+			background:#111;
+			color:white;
+			font-family:Arial,Helvetica,sans-serif;
+			}
+			.page{
+			height:100vh;
+			width:100vw;
+			display:flex;
+			flex-direction:column;
+			padding:25px;
+			}
+			.header{
+			height:130px;
+			display:grid;
+			grid-template-columns:220px 1fr 170px 80px;
+			align-items:center;
+			gap:20px;
+			flex-shrink:0;
+			}
+			.logo{
+			height:150px;
+			max-width:210px;
+			object-fit:contain;
+			padding-left:100px;
+			}
+			.title{
+			text-align:center;
+			font-weight:bold;
+			white-space:nowrap;
+			overflow:hidden;
+			font-size:72px;
+			}
+			.qr{
+			background:white;
+			padding:8px;
+			width:max-content;
+			justify-self:center;
+			}
+			.close{
+			width:70px;
+			height:70px;
+			border-radius:50%;
+			background:#222;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			font-size:50px;
+			cursor:pointer;
+			z-index:999;
+			}
+			.content{
+			flex:1;
+			display:grid;
+			grid-template-columns:50% 50%;
+			min-height:0;
+			gap:20px;
+			}
+			.photoArea{
+			position:relative;
+			display:flex;
+			align-items:center;
+			justify-content:center;
+			}
+			.photo{
+			max-width:90%;
+			max-height:75vh;
+			object-fit:contain;
+			}
+			.arrow{
+			position:absolute;
+			top:50%;
+			transform:translateY(-50%);
+			font-size:90px;
+			cursor:pointer;
+			user-select:none;
+			z-index:10;
+			}
+			.left{
+			left:0;
+			}
+			.right{
+			right:0;
+			}
+			.info{
+			padding:20px;
+			overflow:hidden;
+			display:flex;
+			flex-direction:column;
+			}
+			.meta{
+			font-size:28px;
+			}
+			.bio{
+			flex:1;
+			overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="page">
+			<div class="header">
+				<img class="logo" src="../../logo.png">
+				<div class="title">
+					MEREDITH (HUNNIE) GREY
+				</div>
+				<div id="qr" class="qr"></div>
+				<div class="close" onclick="goHome()">
+					✕
+				</div>
+			</div>
+			<div class="content">
+				<div class="photoArea">
+					<div class="arrow left" onclick="prev()">
+						❮
+					</div>
+					<img id="photo" class="photo">
+					<div class="arrow right" onclick="next()">
+						❯
+					</div>
+				</div>
+				<div class="info">
+					<div class="meta">
+						<h2>Mix</h2>
+						<p>Female 3 - 3.5 YEARS</p>
+					</div>
+					<div id="bio" class="bio">
+						Meet Meredith Grey, a stunning sweetheart with a heart as beautiful as her story.
+
+Estimated to be around 3 years old, Meredith was found surviving alongside her best friend, Christina Grey. The two girls had clearly been relying on one another for comfort and support, forming a bond through circumstances no dog should ever have to endure.
+
+When Meredith was rescued, it quickly became apparent that she needed more than just a safe place to land. She was suffering from a dislocated hip and underwent surgery to give her the second chance she so deserved. Today, she is healing beautifully and proving every day just how resilient she truly is.
+
+Meredith is the definition of gentle. She has a soft, submissive nature and a kind soul that melts hearts wherever she goes. While life may not have always been fair to her, she continues to greet the world with sweetness, grace, and an incredible capacity to love.
+
+One of Meredith's favorite things is simply being close to her people. Whether she's curling up beside you on the couch, resting her head in your lap, or soaking up quiet affection, this girl is a world-class snuggle bug. She thrives on love and cherishes every bit of kindness she receives.
+
+As her confidence grows, so does her personality. Beneath her gentle demeanor is a loving, affectionate companion who is discovering that life can be filled with comfort, safety, and belly rubs instead of uncertainty.
+
+Meredith is fully vetted, spayed, vaccinated, dewormed, microchipped, and up to date on preventatives. She is currently recovering from her hip surgery and is well on her way to a bright future.
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			const photos =
+			["images/1.jpg","images/2.jpg"];
+			
+			
+			let index=0;
+			
+			
+			
+			function show(){
+			
+			document.getElementById("photo").src =
+			photos[index];
+			
+			}
+			
+			
+			
+			function next(){
+			
+			index++;
+			
+			if(index>=photos.length)
+			index=0;
+			
+			show();
+			
+			}
+			
+			
+			
+			function prev(){
+			
+			index--;
+			
+			if(index<0)
+			index=photos.length-1;
+			
+			show();
+			
+			}
+			
+			
+			
+			function goHome(){
+			
+			location.href="../../index.html";
+			
+			}
+			
+			new QRCode(
+			document.getElementById("qr"),
+			{
+			
+			text:"https://adopt.animalsfirst.com/animal/672d68c821fd26b8a1017fa3/6a2ebf97b5bc9718e0008aaf",
+			width:130,
+			height:130
+			}
+			);
+						
+			function fitText(el,max,min){
+			
+			let size=max;
+			
+			el.style.fontSize=size+"px";
+			
+			
+			while(
+			el.scrollHeight > el.clientHeight
+			&&
+			size > min
+			){
+			
+			size--;
+			
+			el.style.fontSize=size+"px";
+			
+			}
+			
+			}
+			
+			
+			fitText(document.querySelector(".title"),72,20);
+			fitText(document.querySelector(".bio"),34,12);
+			
+			let timer;
+			
+			function resetTimer(){
+			
+			clearTimeout(timer);
+			
+			timer=setTimeout(
+			goHome,
+			60000
+			);
+			
+			}
+						
+			[
+			"click",
+			"mousemove",
+			"touchstart",
+			"keydown"
+			
+			].forEach(e=>{
+			
+			document.addEventListener(
+			e,
+			resetTimer
+			);
+			
+			});
+			
+			resetTimer();
+			show();		
+		</script>
+	</body>
+</html>
