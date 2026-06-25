@@ -1,8 +1,30 @@
 <head>
   <Title>Fishy's Friends Rescue Adoption Board</Title>
+<style>
+
+  
+</style>
+
 </head>
 
 <script>
-
+axios.post(
+  "https://adopt.animalsfirst.com/get-animals/672d68c821fd26b8a1017fa3?page=1&species=dog",
+  {
+    filters: {},
+    search: "",
+    display: "grid",
+    status: ""
+  }
+)
+.then(res => {
+  console.log(res.data);
+})
+.catch(err => {
+  console.log(err.response?.data || err);
+});
   
 </script>
+<body>
+  
+</body>
